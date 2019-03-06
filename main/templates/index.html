@@ -1,0 +1,213 @@
+{% load staticfiles %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Happy Birthday!</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Srisakdi:700');
+
+    html, body {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    body {
+    {#background-image: url("{% static 'Beautiful-white-flowers-symbol-of-spring_5120x3200.jpg' %}");#}{#background-repeat: no-repeat;#}{#background-attachment: fixed;#}{#background-size: cover;#}
+    }
+
+    .container {
+        height: 100%;
+    }
+
+
+    .hover {
+        transition: box-shadow 0.5s;
+    }
+
+    .hover:hover {
+        box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    body.modal-open {
+        overflow: auto
+    }
+
+    body.scrollable {
+        overflow-y: auto
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    @media all and (max-width: 1200px) {
+        .fill {
+            width: 100%;
+            height: 60vh;
+        min-height: 60vh;
+
+
+        }
+
+        .message {
+            margin: 0;
+            font-family: 'Srisakdi', cursive;
+            font-size: 1.6em;
+
+        }
+    }
+
+    @media all and (min-width: 1201px) {
+        .fill {
+            width: 100%;
+            height: 100vh;
+            min-height: 100%;
+
+
+        }
+
+        .message {
+        {#margin-top: 30vh;#} position: sticky;
+            font-family: 'Srisakdi', cursive;
+            font-size: 2em;
+        }
+    }
+
+
+</style>
+<body>
+
+
+<div class="container-fluid fill">
+    <div class="row">
+        <div class="col-lg-4 border-right shadow"
+             style="background-image: url('{% static 'flowers3.jpg' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: contain;">
+            <p class="message text-right sticky-top fixed-top pt-5">Once you told me that you love paintings.<br/><br/>
+                So, I
+                decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/> in the
+                world.<br/> <br/>
+                And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark"
+                          style="text-decoration: underline;">family</a> helped me with this.<br/> <br/>
+                Happy birthday, Alina.<br/> <br/><br/> <br/>
+                Ivan. </p>
+        </div>
+
+        <div class="col-lg-8 bg-light">
+
+
+         <div class="row pt-3 pl-4 mb-0 sticky-top shadow" style="background-color: rgba(248,249,250, 0.95)">
+                <div class="col-md-12 justify-content-end">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-left">
+
+                            {% if not paintings.has_previous %}
+                                <li class="page-item disabled">
+                                    <span class="page-link ">Previous</span>
+                                </li>
+                            {% elif paintings.has_previous %}
+
+
+                                <li class="page-item">
+                                    <a class="page-link text-info" href="{% url 'pages' paintings.previous_page_number %}">Previous</a>
+                                </li>
+
+                                <li class="page-item"><a class="page-link text-info"
+                                                         href="{% url 'pages' paintings.previous_page_number %}">{{ paintings.previous_page_number }}</a>
+                                </li>
+                            {% endif %}
+                            <li class="page-item">
+      <span class="page-link ">
+        {{ paintings.number }}
+        <span class="sr-only text-info">(current)</span>
+      </span>
+                            </li>
+                            {% if paintings.has_next %}
+                                <li class="page-item"><a class="page-link text-info"
+                                                         href="{% url 'pages' paintings %}">{{ paintings.next_page_number }}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-info"
+                                       href="{% url 'pages' paintings.next_page_number %}">Next</a>
+                                </li>
+
+                            {% elif not paintings.has_next %}
+                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+
+            <div class="row px-3 pt-5">
+                {% for painting in paintings %}
+
+
+                    {% if forloop.counter0|divisibleby:3 %}
+                        </div>
+                        <div class="row px-4">
+                    {% endif %}
+                    <div class="col-lg-4 pb-5 text-center">
+                        <a data-target="#id{{ painting.pk }}" data-toggle="modal" href="#"><img class="hover"
+                                                                                                src="{% thumbnail painting.image 'image' %}"
+                                                                                                width="99%"
+                                                                                                style="border: 1px solid lightgrey;"></a>
+                        <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade"
+                             id="id{{ painting.pk }}"
+                             role="dialog"
+                             tabindex="-1">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body mb-0 p-0">
+                                        <img src="{{ painting.image.url }}" alt=""
+                                             style="width:99%">
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <div>Painter: <a href="{{ painting.link }}"
+                                                         target="_blank">{{ painting.author }}</a>&nbsp : : : </div>
+                                        <div><a href="{{ painting.image.url }}"
+                                                class="text-muted" target="_blank">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+
+                </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
