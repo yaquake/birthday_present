@@ -89,11 +89,7 @@
         <div class="col-lg-4 border-right shadow"
              style="background-image: url('{% static 'flowers3.jpg' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: contain;">
             <p class="message text-right sticky-top fixed-top pt-5">Once you told me that you love paintings.<br/><br/>
-                So, I
-                decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/> in the
-                world.<br/> <br/>
-                And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark"
-                          style="text-decoration: underline;">family</a> helped me with this.<br/> <br/>
+                So, I decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/>in the world.<br/> <br/>And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark" style="text-decoration: underline;">family</a> helped me with this.<br/> <br/>
                 Happy birthday, Alina.<br/> <br/><br/> <br/>
                 Ivan. </p>
         </div>
@@ -129,7 +125,7 @@
                             </li>
                             {% if paintings.has_next %}
                                 <li class="page-item"><a class="page-link text-info"
-                                                         href="{% url 'pages' paintings %}">{{ paintings.next_page_number }}</a>
+                                                         href="{% url 'pages' paintings.next_page_number %}">{{ paintings.next_page_number }}</a>
                                 </li>
                                 <li class="page-item">
                                     <a class="page-link text-info"
