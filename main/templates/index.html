@@ -46,7 +46,7 @@
     }
 
 
-    @media all and (max-width: 1200px) {
+    @media all and (max-width: 550px) {
         .fill {
             width: 100%;
             height: 60vh;
@@ -60,6 +60,36 @@
             font-family: 'Srisakdi', cursive;
             font-size: 1.6em;
 
+        }
+        .back {
+            background-image: url('{% static 'flower4.jpg' %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+        }
+    }
+
+    @media all and (min-width: 551px) {
+        .fill {
+            width: 100%;
+            height: 60vh;
+        min-height: 60vh;
+
+
+        }
+
+        .message {
+            margin: 0;
+            font-family: 'Srisakdi', cursive;
+            font-size: 1.6em;
+
+        }
+
+        .back {
+            background-image: url('{% static 'flowers3.jpg' %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
         }
     }
 
@@ -77,6 +107,12 @@
             font-family: 'Srisakdi', cursive;
             font-size: 2em;
         }
+        .back {
+            background-image: url('{% static 'flowers3.jpg' %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+        }
     }
 
 
@@ -86,8 +122,8 @@
 
 <div class="container-fluid fill">
     <div class="row">
-        <div class="col-lg-4 border-right shadow"
-             style="background-image: url('{% static 'flowers3.jpg' %}'); background-repeat: no-repeat; background-attachment: fixed; background-size: contain;">
+        <div class="col-lg-4 border-right shadow back"
+             >
             <p class="message text-right sticky-top fixed-top pt-5">Once you told me that you love paintings.<br/><br/>
                 So, I decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/>in the world.<br/> <br/>And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark" style="text-decoration: underline;">family</a> helped me with this.<br/> <br/>
                 Happy birthday, Alina.<br/> <br/><br/> <br/>
