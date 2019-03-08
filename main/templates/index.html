@@ -50,7 +50,7 @@
         .fill {
             width: 100%;
             height: 60vh;
-        min-height: 60vh;
+            min-height: 60vh;
 
 
         }
@@ -61,6 +61,7 @@
             font-size: 1.6em;
 
         }
+
         .back {
             background-image: url('{% static 'flower4.jpg' %}');
             background-repeat: no-repeat;
@@ -73,7 +74,7 @@
         .fill {
             width: 100%;
             height: 60vh;
-        min-height: 60vh;
+            min-height: 60vh;
 
 
         }
@@ -103,10 +104,11 @@
         }
 
         .message {
-        {#margin-top: 30vh;#} position: sticky;
+            position: sticky;
             font-family: 'Srisakdi', cursive;
             font-size: 2em;
         }
+
         .back {
             background-image: url('{% static 'flowers3.jpg' %}');
             background-repeat: no-repeat;
@@ -123,9 +125,12 @@
 <div class="container-fluid fill">
     <div class="row" style="min-height: 100%;">
         <div class="col-lg-4 border-right shadow back"
-             >
+        >
             <p class="message text-right sticky-top fixed-top pt-5">Once you told me that you love paintings.<br/><br/>
-                So, I decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/>in the world.<br/> <br/>And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark" style="text-decoration: underline;">family</a> helped me with this.<br/> <br/>
+                So, I decided to gift them to you.<br/> <br/>Paintings, which depict the most wonderful girl<br/>in the
+                world.<br/> <br/>And my <a href="https://www.facebook.com/groups/Artistinnerfamily/" class="text-dark"
+                                           style="text-decoration: underline;">family</a> helped me with this.<br/>
+                <br/>
                 Happy birthday, Alina.<br/> <br/><br/> <br/>
                 Ivan. </p>
         </div>
@@ -133,38 +138,45 @@
         <div class="col-lg-8 bg-light">
 
 
-         <div class="row pt-3 pl-4 mb-0 sticky-top shadow" style="background-color: rgba(248,249,250, 0.95)">
+            <div class="row pt-3 pl-4 mb-0 sticky-top shadow" style="background-color: rgba(248,249,250, 0.95)">
                 <div class="col-md-12 justify-content-end">
                     <nav aria-label="...">
                         <ul class="pagination justify-content-left">
 
                             {% if not paintings.has_previous %}
                                 <li class="page-item disabled">
-                                    <span class="page-link ">Previous</span>
+                                    <span class="page-link">First</span>
+                                </li>
+                                <li class="page-item disabled">
+                                    <span class="page-link">Previous</span>
                                 </li>
                             {% elif paintings.has_previous %}
 
-
                                 <li class="page-item">
-                                    <a class="page-link text-info" href="{% url 'pages' paintings.previous_page_number %}">Previous</a>
+                                    <a class="page-link text-success"
+                                       href="{% url 'pages' 1 %}">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-success"
+                                       href="{% url 'pages' paintings.previous_page_number %}">Previous</a>
                                 </li>
 
-                                <li class="page-item"><a class="page-link text-info"
+                                <li class="page-item"><a class="page-link text-success"
                                                          href="{% url 'pages' paintings.previous_page_number %}">{{ paintings.previous_page_number }}</a>
                                 </li>
                             {% endif %}
                             <li class="page-item">
-      <span class="page-link ">
+      <span class="page-link" style="background-color: lightgrey; color: black;">
         {{ paintings.number }}
-        <span class="sr-only text-info">(current)</span>
+        <span class="sr-only" >(current)</span>
       </span>
                             </li>
                             {% if paintings.has_next %}
-                                <li class="page-item"><a class="page-link text-info"
+                                <li class="page-item"><a class="page-link text-success"
                                                          href="{% url 'pages' paintings.next_page_number %}">{{ paintings.next_page_number }}</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link text-info"
+                                    <a class="page-link text-success"
                                        href="{% url 'pages' paintings.next_page_number %}">Next</a>
                                 </li>
 
@@ -203,7 +215,8 @@
                                     <div class="modal-footer">
 
                                         <div>Painter: <a href="{{ painting.link }}"
-                                                         target="_blank">{{ painting.author }}</a>&nbsp : : : </div>
+                                                         target="_blank">{{ painting.author }}</a>&nbsp : : :
+                                        </div>
                                         <div><a href="{{ painting.image.url }}"
                                                 class="text-muted" target="_blank">Download</a>
                                         </div>
