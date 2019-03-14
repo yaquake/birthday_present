@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Painting
 from django.core.paginator import Paginator
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 numbers = {
     '1': 'Ena',
@@ -19,9 +24,9 @@ numbers = {
 def home(request):
     return redirect('pages', page=1)
 
-
+@cache_page(CACHE_TTL)
 def pages(request, page):
-    paintings = Painting.objects.all().order_by('pk')
+    paintings = Painting.objects.all().order_by('?')
     paginator = Paginator(paintings, 9)
     result = paginator.page(page)
     return render(request, 'index.html', {'paintings': result})
