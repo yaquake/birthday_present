@@ -26,7 +26,7 @@ def home(request):
 
 @cache_page(CACHE_TTL)
 def pages(request, page):
-    paintings = Painting.objects.all()
+    paintings = Painting.objects.all().order_by('pk')
     paginator = Paginator(paintings, 9)
     result = paginator.page(page)
     return render(request, 'index.html', {'paintings': result})
